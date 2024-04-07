@@ -33,9 +33,11 @@ const app = express();
 //This middleware is used to parse incoming requests with JSON payloads.
 //It automatically parses the JSON data sent in the body of incoming HTTP requests and makes the parsed data available under the req.body property of the request object.
 // It is typically used to handle requests in APIs where clients send JSON data as part of their requests.
+//handle req
 app.use(express.json())
+app.use(express.urlencoded({extended:false}))
 
-app.use('api/products',require('./routes/productRoutes'))
+app.use('/api/products',require('./routes/productRoutes'))
 // const productSchema = new Schema({
 //   id: {
 //     type:Number,
@@ -84,8 +86,25 @@ app.get('/',(req,res)=>{
   })
 })
 
+//image store
+const storage = multer.diskStorage({
+  destination:'./upload/images',
+  filename:(req,file,cb)=>{
+    return cb(null,`${file.filedname}_${Date.now()}${path.extname(file.originalname)}`)
+  }
+})
+ 
+const upload  = multer({storage:storage})
+app.use('/images',express.static('upload/images'))
+//Create upload endpoint for images
+app.post('/upload',upload.single('product'),(req,res)=>{
+  res.json({
+    sucess:1,
+    image_url:''
+  })
+})
 app.listen(port,(error)=>{
-  if(!error){
+  if(!error){ 
     console.log(`Server is started on ${port}`)
   }else{
     console.log("Error :",error)
