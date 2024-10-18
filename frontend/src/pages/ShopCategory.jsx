@@ -39,7 +39,7 @@
 import { useContext } from "react";
 import { ShopContext } from "../context/ShopContext";
 import dropdown_icon from '../assets/dropdown_icon.png'; // Corrected variable name
-import Item from "../components/Item/Item";
+import Item from "../components/Item";
 import PropTypes from 'prop-types'; // Added PropTypes
 
 const ShopCategory = (props) => { // Destructured props

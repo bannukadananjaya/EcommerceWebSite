@@ -10,6 +10,15 @@ const cors = require("cors");
 app.use(express.json());
 app.use(cors());
 
+//Image storage engine
+
+const storage = multer.diskStorage({
+    destination:'./upload/images',
+    filename:(req,file,cb)=>{
+        return cb(null,`${file.fieldname}_${Date.now()}${path.extname.}`)
+    }
+})
+
 //Datbase connection
 mongoose.connect("mongodb://localhost:27017/ecommerce_App");
 

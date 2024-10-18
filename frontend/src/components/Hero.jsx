@@ -1,5 +1,5 @@
-import HeroImage from '../../assets/hero_image.png';
-import HandIcon from '../../assets/hand_icon.png';
+import HeroImage from '../assets/hero_image.png';
+import HandIcon from '../assets/hand_icon.png';
 
 function Hero() {
   return (

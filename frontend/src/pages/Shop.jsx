@@ -1,8 +1,8 @@
-import Popular from '../components/Popular/popular';
-import Offers from '../components/Offers/Offers';
-import NewCollextions from '../components/NewCollections/NewCollextions';
-import NewsLetter from '../components/NewsLetter/NewsLetter';
-import Hero from '../components/Hero/Hero';
+import Popular from '../components/Popular';
+import Offers from '../components/Offers';
+import NewCollextions from '../components/NewCollections';
+import NewsLetter from '../components/NewsLetter';
+import Hero from '../components/Hero';
 const Shop = () => {
   return (
     <>

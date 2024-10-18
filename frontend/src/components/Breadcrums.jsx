@@ -1,4 +1,4 @@
-import arrow_icon from '../../assets/breadcrum_arrow.png'
+import arrow_icon from '../assets/breadcrum_arrow.png'
 
 const Breadcrums = (props) => {
     const {product} = props;

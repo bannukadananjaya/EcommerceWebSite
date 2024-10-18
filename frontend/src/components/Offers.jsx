@@ -1,4 +1,4 @@
-import ExclusiveImg from '../../assets/exclusive_image.png'
+import ExclusiveImg from '../assets/exclusive_image.png'
 const Offers = () => {
   return (
     <div className='flex w-65% h-3/5 m-auto py-8' style={{background:'linear-gradient(180deg,#fde1ff 0%,#e1ffea22 60%)'}}>

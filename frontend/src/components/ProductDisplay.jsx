@@ -1,10 +1,10 @@
-import star_icon  from "../../assets/star_icon.png";
-import star_dull_icon from "../../assets/star_dull_icon.png";
+import star_icon  from "../assets/star_icon.png";
+import star_dull_icon from "../assets/star_dull_icon.png";
 
 const ProductDisplay = (props) => {
   const { product } = props;
   return (
-    <div className="flex w-[80vh] mx-auto my-5">
+    <div className="flex w-[70%] mx-auto my-5">
       <div className="flex-1 flex gap-3">
         {/* left */}
         <div className="flex flex-col gap-3 w-[100px]">
