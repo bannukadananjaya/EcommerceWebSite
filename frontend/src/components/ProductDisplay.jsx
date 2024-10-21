@@ -1,8 +1,13 @@
 import star_icon  from "../assets/star_icon.png";
 import star_dull_icon from "../assets/star_dull_icon.png";
+import { useContext } from "react";
+import { ShopContext } from "../context/ShopContext";
+import Item from "./Item";
 
 const ProductDisplay = (props) => {
   const { product } = props;
+  const {addToCart} = useContext(ShopContext);
+
   return (
     <div className="flex w-[70%] mx-auto my-5">
       <div className="flex-1 flex gap-3">
@@ -51,7 +56,7 @@ const ProductDisplay = (props) => {
                 <div className="text-xs text-slate-500 hover:bg-slate-100 border border-solid border-slate-300 cursor-pointer rounded-md px-1 py-1">XL</div>
             </div>
         </div>
-        <button className="bg-red-400 text-xl text-white rounded-md p-2 hover:bg-slate-200 hover:text-red-400">Add to cart</button>
+        <button className="bg-red-400 text-xl text-white rounded-md p-2 hover:bg-slate-200 hover:text-red-400" onClick={()=>{addToCart(product.id)}}>Add to cart</button>
         <p className="font-semibold">Categoty :<span className="text-sm font-normal">Women T-shhirt</span></p>
         <p className="font-semibold">Tags :<span className="text-sm font-normal">Women T-shhirt</span></p>
       </div>
