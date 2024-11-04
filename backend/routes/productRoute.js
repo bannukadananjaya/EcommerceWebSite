@@ -1,17 +1,22 @@
 const express = require('express');
-// import {addProduct} from '../controller/productController'
+const {addProduct,removeProduct,getAllProducts} = require('../controller/productController');
 
 const router = express.Router();
 
-// router.post('/add',addProduct);
-router.post('/add', (req,res) => {
-    try{
-        const {} = req.body;
-
-    }catch(err){
-        console.log(err);
-    }
+router.get('/',getAllProducts);
+router.post('/addproduct',addProduct);
+router.delete('/removeproduct',removeProduct);
+router.get('/',(req,res)=>{
+    res.status(200).json({message:"endpoint is working"})
 })
+// router.post('/add', (req,res) => {
+//     try{
+//         const {} = req.body;
 
-export default router;
+//     }catch(err){
+//         console.log(err);
+//     }
+// })
+
+module.exports = router;
 
