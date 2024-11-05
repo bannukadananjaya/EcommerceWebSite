@@ -1,6 +1,6 @@
 const express = require("express");
 const multer = require("multer");
-const path = require("path");
+const path = require("path");//get access to backend directory
 const cors = require("cors");
 const dotenv = require('dotenv');
 const { url } = require("inspector");
@@ -21,51 +21,26 @@ app.use(cors());
 
 //Image storage engine
 
-// const storage = multer.diskStorage({
-//     destination:'./upload/images',
-//     filename:(req,file,cb)=>{
-//         return cb(null,`${file.fieldname}_${Date.now()}${path.extname(file.originalname)}`)
-//     }
-// })
-// const upload = multer({storage:storage})
-
-// app.use('/images',express.static('upload/images'))
-
-// //creating upload Endpoint for images
-// app.post('/upload',upload.single('product'),(req,res)=>{
-//     res.json({
-//         success:true,
-//         image_url:`http://localhost:${port}/images/${req.file.filename}`
-//     })
-// })
-
-// Configure multer storage
-const storage = multer.diskStorage({
-    destination: './upload/images', // Ensure this path exists
-    filename: (req, file, cb) => {
-        cb(null, `${file.fieldname}_${Date.now()}${path.extname(file.originalname)}`);
-    }
-});
-
-const upload = multer({ storage: storage });
-
-// Serve static files from 'upload/images' folder
-app.use('/images', express.static('upload/images'));
-
-// Create an upload endpoint for images
-app.post('/upload', upload.single('product'), (req, res) => {
-    res.json({
-        success: true,
-        image_url: `http://localhost:${port}/images/${req.file.filename}`
-    });
-});
-
 app.use('/user',userRoute);
 app.use('/product',productRoute);
 
 app.get('/',(req,res)=>{
     res.send("Express is running");
 })
+
+
+const storage = multer.diskStorage({
+    destination:  './upload/images',
+    filename: function (req, file, cb) {
+      return cb(null, `${file.fieldname}_${Date.now()}${path.extname(file.originalname)}`)
+    }
+  })
+const upload = multer({storage:storage})
+
+app.post('/upload', upload.single('product'),(req,res)=>{
+    res.status(200).json({data:req.file,image_url: `http://localhost:${port}/images/${req.file.filename}`});
+})
+app.use('/images',express.static('upload/images'))
 
 //Test API
 

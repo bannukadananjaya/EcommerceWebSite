@@ -1,8 +1,6 @@
-import React from "react";
-import "./AddProduct.css";
 import { useState } from "react";
-import upload_area from "../../assets/upload_area.svg";
-import { response } from "express";
+import upload_area from "../assets/upload_area.svg";
+// import { response } from "express";
 // import { urlencoded } from 'express';
 
 const AddProduct = () => {
@@ -29,7 +27,7 @@ const AddProduct = () => {
     formData.append("product");
 
     await fetch("http://localhost:4000/upload", {
-      mmethod: "POST",
+      method: "POST",
       headers: {
         Accept: "application/json",
       },
@@ -75,16 +73,16 @@ const AddProduct = () => {
       <div className="addproduct-price">
         <div className="addproduct-itemfield">
           <p>Price</p>
-          <input type="text" name="Old price" placeholder="Type here" />
+          <input type="text" name="old_price" placeholder="Type here" onChange={changeHandler}/>
         </div>
         <div className="addproduct-itemfield">
           <p>Offer Price</p>
-          <input type="text" name="New price" placeholder="Type here" />
+          <input type="text" name="new_price" placeholder="Type here" onChange={changeHandler}/>
         </div>
       </div>
       <div className="addproduct-itemfield">
         <p>Product Category</p>
-        <select name="category" className="addproduct-selector" id="">
+        <select name="category" className="addproduct-selector" id="value">
           <option value="women">women</option>
           <option value="men">men</option>
           <option value="kid">kid</option>
@@ -92,8 +90,8 @@ const AddProduct = () => {
       </div>
       <div className="addproduct-itemfiled">
         <label htmlFor="file-input">
-          <img src={image ? URL.createObjectURL(image) : upload_area} alt="" />
-          {/* <img src={upload_area} className='addproduct-thumbnail-img' alt="" /> */}
+          {/* <img src={image ? URL.createObjectURL(image) : upload_area} alt="" /> */}
+          <img src={upload_area} className='addproduct-thumbnail-img' alt="" /> 
         </label>
         <input
           onChange={imageHandler}
