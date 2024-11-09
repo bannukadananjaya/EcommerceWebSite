@@ -1,17 +1,31 @@
 const Product = require('../models/Product');
 
-const { trace } = require('../routes/userRoute');
-
 const getAllProducts = async(req,res)=>{
+    try{
+        const products = await Product.find();
+        res.status(200).json(products)
+        console.log(products)
+    }catch(err){
+        console.log(err);
+    }
+    
 
 }
+
 
 const addProduct = async (req,res) => {
     try{
         // const {} = req.body;
         console.log(req.body);
+
+        const lastProduct = await Product.findOne().sort({id:-1});
+        console.log("LAsr",lastProduct);
+        let id = 1;
+        if(lastProduct){
+            id = lastProduct.id+1;
+        }
         const product = new  Product({
-            id:req.body.id,
+            id:id,
             name:req.body.name, 
             image:req.body.image,
             category:req.body.category,

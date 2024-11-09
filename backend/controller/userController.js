@@ -12,7 +12,8 @@ const signup = async (req, res) => {
       return res.status(400).json({ succss: false, error: "Existing user" });
     }
     //hash password
-    const salt = bcrypt.genSalt(10);
+    // const salt = bcrypt.genSalt(10);
+    const saltRounds = 10;
     const hashPassword = await bcrypt.hash(req.body.password, saltRounds);
 
     let cart = {};
@@ -35,8 +36,8 @@ const signup = async (req, res) => {
     //         id:user._id,
     //     }
     // }
-    const token = jwt.sign({ id: user.email }, "secret_ecom");
-    res.json({ success: true, token });
+    // const token = jwt.sign({ id: user.email }, "secret_ecom");
+    res.json({ success: true,message:'user created' });
   } catch (err) {
     console.log(err);
     return res
@@ -47,16 +48,16 @@ const signup = async (req, res) => {
 
 const signin = async (req, res) => {
     try{
-        const existingUser = await User.findOne({ email: req.body.email });
+        const user = await User.findOne({ email: req.body.email });
 
-        if (!existingUser) {
+        if (!user) {
             console.log("new user");
             return res.status(404).json({ message: "Please signup to continue" });
         }
 
         const validPassword = await bcrypt.compare(
             req.body.password,
-            existingUser.password,
+            user.password,
         );
 
         if (!validPassword) {
@@ -65,7 +66,8 @@ const signin = async (req, res) => {
         }
 
         console.log("Log in");
-        res.status(200).json({message:"Login Successfull"})
+        const token = jwt.sign({id:user.email},'secret_ecom')
+        res.status(200).json({success:true,token})
 
     }catch(err){
         console.log(err);

@@ -22,9 +22,14 @@ const Navbar = () => {
         <li className='cursor-pointer' onClick={()=>setMenu("Kids")}><Link to="/kids">Kids</Link> {menu=="Kids"?<hr className='w-4 mx-auto h-1 rounded-full bg-red-500'/>:<></>}</li>
       </ul>
       <div className="flex items-center gap-4">
+        {localStorage.getItem('token')?
+          <button onClick={()=>{localStorage.removeItem('token');localStorage.clear(); window.location.replace('/')}} className='font-medium border  rounded-full px-3 py-1 bg-slate-100 text-gray-600 hover:bg-red-400 hover:text-white'>Logout</button>
+        :
         <Link to="/login">
           <button className='font-medium border  rounded-full px-3 py-1 bg-slate-100 text-gray-600 hover:bg-red-400 hover:text-white'>Login</button>
         </Link>
+        }
+        
         <Link to="/cart">
         <img className='w-6' src={cart_icon} alt="" />
         </Link>
