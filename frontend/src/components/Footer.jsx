@@ -7,25 +7,25 @@ import whatsapp_icon from '../assets/whatsapp_icon.png'
 function Footer() {
   return (
     <>
-    <div className='flex justify-around'>
+    <div className='flex justify-around items-center'>
       <div>
         <img src={footer_logo} alt="" />
         <p>Shopper</p>
       </div>
-      <ul>
-        <li>Company</li>
-        <li>Products</li>
-        <li>Officers</li>
-        <li>About</li>
-        <li>Contact</li>
+      <ul className='flex gap-5'>
+        <li className='cursor-pointer hover:text-red-500'>Company</li>
+        <li className='cursor-pointer hover:text-red-500'>Products</li>
+        <li className='cursor-pointer hover:text-red-500'>Officers</li>
+        <li className='cursor-pointer hover:text-red-500'>About</li>
+        <li className='cursor-pointer hover:text-red-500'>Contact</li>
       </ul>
-      <div>
-        <div className='p-2'>
-          <img className='p-1' src={instagram_icon} alt="" />
+      {/* <div> */}
+        <div className='flex gap-5'>
+          <img className='p-1 cursor-pointer hover:text-red-500' src={instagram_icon} alt="" />
           <img className='p-1' src={pintester_icon} alt="" />
           <img className='p-1' src={whatsapp_icon} alt="" />
         </div>
-      </div>
+      {/* </div> */}
     </div>
     <hr />
     <div className='flex flex-col items-center p-4'>
